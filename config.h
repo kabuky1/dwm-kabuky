@@ -6,7 +6,7 @@ static const unsigned int gappx       = 5;        /* gaps between windows */
 static const unsigned int snap        = 0;       /* snap pixel */
 static const int showbar              = 1;        /* 0 means no bar */
 static const int topbar               = 1;        /* 0 means bottom bar */
-static const char *fonts[]            = { "DejaVu:size=12" };
+static const char *fonts[]            = { "DejaVu:size=10" };
 static const char dmenufont[]         = "DejaVu:size=12";
 static const unsigned int baralpha    = 0;
 static const unsigned int borderalpha = OPAQUE;
@@ -29,7 +29,7 @@ static const char *tags[] = { "1", "2" };
 
 static const char ptagf[] = "[%s %s]";	/* format of a tag label */
 static const char etagf[] = "[%s]";	/* format of an empty tag */
-static const int lcaselbl = 0;		/* 1 means make tag label lowercase */	
+static const int lcaselbl = 0;		/* 1 means make tag label lowercase */
 
 static const Rule rules[] = {NULL};
 
@@ -59,15 +59,14 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-//static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
-static const char *dmenucmd[] = { "dmenu_run", NULL };
-static const char *termcmd[]  = { "terminator", NULL };
+static const char *dmenucmd[] = {"dmenu_run", NULL };
+static const char *termcmd[] = { "terminator", NULL};
 
 static const Key keys[] = {
 	/* modifier                     key        	function        argument */
-	{ MODKEY,                       XK_p,      	spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, 	spawn,          {.v = termcmd } },
-        { MODKEY,                       XK_w,      	spawn,          SHCMD ( "firefox" ) },
+	{ MODKEY,			XK_p,		spawn,		SHCMD ( "dmenu_run")},
+	{ MODKEY|ShiftMask,	        XK_Return, 	spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_w,      	spawn,          SHCMD ( "firefox" ) },
 	{ 0,				XK_F2,		spawn,		SHCMD ("brightnessctl --device=asus\:\:kbd_backlight set 0")},
 	{ 0, 				XK_F3,		spawn,		SHCMD ("brightnessctl --device=asus\:\:kbd_backlight set 3")},
 	{ 0,                            XK_F8,	 	spawn,          SHCMD ("brightnessctl s 5%+")},
@@ -81,7 +80,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_0,      	tag,            {.ui = ~0 } },
 	TAGKEYS(                        XK_1,                      	0)
 	TAGKEYS(                        XK_2,                      	1)
-	{ MODKEY|ShiftMask,             XK_q,      	quit,           {0} },
+	{ MODKEY,		        XK_q,      	quit,           {0} },
 	{ MODKEY,			XK_s,		spawn,		SHCMD ("systemctl poweroff")},
 	{ MODKEY,			XK_r,		spawn,		SHCMD ("systemctl reboot")},
 };
